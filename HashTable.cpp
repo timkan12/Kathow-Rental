@@ -4,7 +4,7 @@ using namespace std;
 
 class Hash
 {
-    int Cars;    // No. of buckets
+    int Cars;    // No. of Cars
 
     // Pointer to an array containing cars
     list<int> *table;
@@ -28,7 +28,7 @@ public:
 Hash::Hash(int b)
 {
     this->Cars = b;
-    table = new list<int>[BUCKET];
+    table = new list<int>[Cars];
 }
 
 void Hash::insertCars(int key)
