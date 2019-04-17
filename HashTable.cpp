@@ -72,17 +72,17 @@ void Hash::displayHash()
 int main()
 {
   // array that contains keys to be mapped
-  int a[] = {15, 11, 27, 8, 12};
+  int a[] = {Toyota, Ford, Honda, Chevy, Ram};
   int n = sizeof(a)/sizeof(a[0]);
 
   // insert the keys into the hash table
-  Hash h(7);   // 7 is count of buckets in
+  Hash h(7);   // 7 is count of Cars in
                // hash table
   for (int i = 0; i < n; i++)
     h.insertCars(a[i]);
 
-  // delete 12 from hash table
-  h.deleteCars(12);
+  // delete Ram from hash table
+  h.deleteCars(Ram);
 
   // display the Hash table
   h.displayHash();
