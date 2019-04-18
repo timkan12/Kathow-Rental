@@ -1,5 +1,6 @@
 #include<iostream>
 #include <list>
+#include "Hash.hpp"
 using namespace std;
 
 class Hash
