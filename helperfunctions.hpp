@@ -33,10 +33,21 @@ int searchForUserInArray(customer* myArray[], int currentSize, string given_name
     then set the user objects carBrand to that cars name and year, then change its flag to 1
     then exit 
 */
-void rentCar(string userName){
+void rentCar(string userName)
+{
+  bool = true;
   cout << "Enter name of car you would like to rent. " << endl;
   string enteredCarName;
   getline(cin,enteredCarName);
+  if(enteredCarName==cars[i])
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+
 }
 
 
