@@ -50,10 +50,22 @@ void rentCar(string userName){
 */
 void writeOutAllArrayInformation(customer* myArray[], int currentSize)
 {
-  string textFileName = "customerinformation.txt";
+  //string testFileName;
+  ofstream testFileName("customerinformation.txt");
+  //textFileName.open("customerinformation.txt");
+  if(testFileName.is_open())
+  {
+  for(int i = 0 ; i < currentSize; i++)
+    {
+      testFileName << myArray[i]->name << endl;
+      testFileName << myArray[i]->carBrand << endl;
+    }
+  }
+  testFileName.close();
   // write to that text file
 
 }
+
 
 
 /*
