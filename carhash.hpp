@@ -10,15 +10,15 @@ struct carName
     int year;
     int count;
     carName* next;
-    int isRented;   // flag that will be set if car is already rented.
+  //  int isRented;   // flag that will be set if car is already rented.
 };
 
 class carHashTable {
   public:
     carHashTable();
     void HashTable(int tableSize);
-    ~userHashTable();
-    void addCar(string name);
+    ~carHashTable();
+    void addCar(string name, int year);
     bool isInTable(string name);
     void incrementCount(string name);
     int getNumCollisions();
@@ -31,8 +31,8 @@ class carHashTable {
     carName* searchTable(string name);
     carName** hashTable;
     int hashTableSize;
-    //int numItems; // num of users
-    //int numCollisions; // find # of collisions
+    int numItems; // num of users
+    int numCollisions; // find # of collisions
 };
 
 #endif
