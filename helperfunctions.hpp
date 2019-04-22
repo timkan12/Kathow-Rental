@@ -39,7 +39,7 @@ void rentCar(string userName)
   cout << "Enter name of car you would like to rent. " << endl;
   string enteredCarName;
   getline(cin,enteredCarName);
-  if(enteredCarName==cars[i])
+  if(enteredCarName==MyArray[i])
   {
     return true;
   }
