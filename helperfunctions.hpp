@@ -94,6 +94,13 @@ int loadcustomerinformation(customer* myArray[], int size){
     int currentSize = 0;
     // for loop creates new objects everything from the read in file
     //// for loop here
+    ifstream inFile;
+    inFile.open(textFileName);
+    while(!inFile.eof())
+    {
+      inFile >>
+    }
+
 
 
 
