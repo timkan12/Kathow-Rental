@@ -40,7 +40,7 @@ void carHashTable::addCar(string name, int year)
   newCar->year = year;
   newCar->next = NULL;
   newCar->count = 1;
-  newCar->isRented = 0;
+  //newCar->isRented = 0;
 
   int index = getHash(name);
   carName *temp = hashTable[index];
@@ -87,32 +87,33 @@ void carHashTable::incrementCount(string name) // not using
   temp->count = temp->count+1;
 }
 
-int userHashTable::getNumCollisions()  // not using
-{
-  return numCollisions;
-}
+// int carHashTable::getNumCollisions()  // not using
+// {
+//   return numCollisions;
+// }
+//
+// int carHashTable::uniqueCar()    // not using
+// {
+//   int index = 0;
+//   for(int i = 0; i < hashTableSize; i++)
+//   {
+//     carName *temp = hashTable[i];
+//     while(temp != NULL)
+//     {
+//       index = index + temp->count;
+//       temp = temp->next;
+//     }
+//   }
+//   return index;
+// }
 
-int carHashTable::uniqueCar()    // not using
+unsigned int carHashTable::getHash(string name)
 {
-  int index = 0;
-  for(int i = 0; i < hashTableSize; i++)
-  {
-    carName *temp = hashTable[i];
-    while(temp != NULL)
-    {
-      index = index + temp->count;
-      temp = temp->next;
-    }
-  }
-  return index;
-}
-
-unsigned int carHashTable::getHash(string name);
-{
+  unsigned int hashValue = 5381;
   int length = name.length();
   for(int i = 0; i < length; i++)
   {
-    hashValue = ((hashValue<<5) + word[i]);
+    hashValue = ((hashValue<<5) + name[i]);
   }
   hashValue %= hashTableSize;
 
