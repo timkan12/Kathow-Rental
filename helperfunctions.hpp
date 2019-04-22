@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
-#include <iostream>
+#include <fstream>
+#include <sstream>
+
 using namespace std;
 
 // struct to make user objects.
@@ -9,6 +11,7 @@ public:
   string name;
   string carBrand;
   string year;
+  int isRented; // 0 = haven't rented out a car yet, 1 = rented out a car already
 };
 
 int searchForUserInArray(customer* myArray[], int currentSize, string given_name)
@@ -17,10 +20,11 @@ int searchForUserInArray(customer* myArray[], int currentSize, string given_name
   {
     if (myArray[i]->name == given_name)
     {
+      //cout << "found" << endl;
       return i; // returns the index of the customer that it found.
     }
   }
-  return 0;
+  return -1;
 }
 
 /*
@@ -31,24 +35,21 @@ int searchForUserInArray(customer* myArray[], int currentSize, string given_name
     tell the user the car is taken and ask for a different one or just exit the program
   if its set to 0
     then set the user objects carBrand to that cars name and year, then change its flag to 1
-    then exit 
+    then exit
 */
-void rentCar(string userName)
-{
-  bool = true;
-  cout << "Enter name of car you would like to rent. " << endl;
-  string enteredCarName;
-  getline(cin,enteredCarName);
-  if(enteredCarName==MyArray[i])
-  {
-    return true;
-  }
-  else
-  {
-    return false;
-  }
-
-}
+// void rentCar(string userName, string brand, string year){
+//   cout << "Enter name of car you would like to rent. " << endl;
+//   getline(cin,brand);
+//   //searchTable(brand);
+//
+//   cout << "Enter your desire year for the car" << endl;
+//   getline(cin,year);
+//   customer* newCustomer = new customer;
+//   newCustomer->name = userName;
+//   newCustomer->carBrand = brand;
+//   newCustomer->year = year;
+//
+// }
 
 
 /*
@@ -61,22 +62,22 @@ void rentCar(string userName)
 */
 void writeOutAllArrayInformation(customer* myArray[], int currentSize)
 {
-  //string testFileName;
-  ofstream testFileName("customerinformation.txt");
-  //textFileName.open("customerinformation.txt");
+  ofstream testFileName;
+  testFileName.open ("customerinformation.txt");
   if(testFileName.is_open())
   {
   for(int i = 0 ; i < currentSize; i++)
     {
-      testFileName << myArray[i]->name << endl;
-      testFileName << myArray[i]->carBrand << endl;
+      testFileName << myArray[i]->name << "," << myArray[i]->carBrand << "," << myArray[i]->year << "," << myArray[i]->isRented << endl;
     }
   }
+  else
+  {
   testFileName.close();
   // write to that text file
+  }
 
 }
-
 
 
 /*
@@ -90,19 +91,48 @@ void writeOutAllArrayInformation(customer* myArray[], int currentSize)
   need to parse everyline and create new objects
 */
 int loadcustomerinformation(customer* myArray[], int size){
-    string textFileName = "customerinformation.txt";
+    //string textFileName = "customerinformation.txt";
     int currentSize = 0;
-    // for loop creates new objects everything from the read in file
-    //// for loop here
-    ifstream inFile;
-    inFile.open(textFileName);
-    while(!inFile.eof())
+    //for loop creates new objects everything from the read in file
+    ifstream textFileName;
+    string line;
+    textFileName.open("customerinformation.txt");
+
+    if(textFileName.is_open())
     {
-      inFile >>
+       for(int i = 0; i < size; i++)
+       {
+        while(getline(textFileName,line))
+        {
+        stringstream ss;
+        ss << line;
+        string item;
+
+        getline(ss,item, ',');
+        string tempName = item;
+
+        getline(ss,item, ',');
+        string tempCarBrand = item;
+
+        getline(ss,item,',');
+        string tempYear = item;
+
+        getline(ss,item,',');
+        int tempIsRented = stoi(item);
+
+        customer *newCustomer = new customer;
+        newCustomer->name = tempName;
+        newCustomer->carBrand = tempCarBrand;
+        newCustomer->year = tempYear;
+        newCustomer->isRented = tempIsRented;
+        myArray[i] = newCustomer;
+
+
+        currentSize++;
+        }
+      }
     }
-
-
-
+    textFileName.close();
 
 
     return currentSize;
