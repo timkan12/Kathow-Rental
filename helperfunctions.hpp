@@ -89,55 +89,21 @@ void writeOutAllArrayInformation(customer* myArray[], int currentSize)
 
   need to parse everyline and create new objects
 */
-int split (string str, char c, string array[], int size) // split function
- {
-    if (str.length() == 0) { // if length of string is 0 then return is 0
-         return 0;
-     }
-    string word = ""; // where the word goes
-    int count = 0;
-    str = str + c;
-    for (int i = 0; i < str.length(); i++)
-    {
-        if (str[i] == c)
-        {
-            if (word.length() == 0)
-                continue;
-            array[count++] = word;
-            word = "";
-        } else
-        {
-            word = word + str[i];
-        }
-    }
-    return count ;
- }
 int loadcustomerinformation(customer* myArray[], int size){
-       string textFileName = "customerinformation.txt";
+    string textFileName = "customerinformation.txt";
     int currentSize = 0;
     // for loop creates new objects everything from the read in file
     //// for loop here
     ifstream inFile;
     inFile.open(textFileName);
-  string line;// create a temporary string
-  string line2 [2]; // create a second temporary string 
- int i = 0;// create a variable 
- if(in_file.fail()) // if file fails to open then return -1
- {
-     cout << "No cars saved to the database" << endl;;
- }
- else
- {
-   while(getline(in_file,line)) // create while loop 
- {
- // Manipulate the string the line g
-   stringstream ss (line); // 
-   split(line,',', line2, 2);
-   a[i] = line2[0];
-   t[i]= line2[1];
-  i++;
-  }
- }
-in_file.close(); // file close 
-return currentSize;
+    while(!inFile.eof())
+    {
+      inFile >>
+    }
+
+
+
+
+
+    return currentSize;
 }
