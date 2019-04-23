@@ -137,3 +137,29 @@ int loadcustomerinformation(customer* myArray[], int size){
 
     return currentSize;
 }
+
+void carTextFile()
+{
+  ifstream carFile;
+  carFile.open("Cars.txt");
+
+  if(carFile.is_open())
+  {
+    string line;
+    string item;
+    while(getline(carFile,line))
+    {
+      stringstream ss;
+      ss << line;
+
+
+      getline(ss,item,',');
+      string tempCar = item;
+
+      getline(ss,item,',');
+      string tempYear = item;
+
+      cout << tempCar << " " << tempYear << endl;
+    }
+  }
+}
