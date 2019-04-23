@@ -1,11 +1,17 @@
 #include "menus.hpp"
 #include "helperfunctions.hpp"
-#include <iomanip>
 #include "carhash.cpp"
+#include <iomanip>
+#include <string>
+#include <fstream>
+
+
+using namespace std;
 
 
 int main()
 {
+  int hashSize = 100;
   int size = 100; // max number of users in the system
   customer* arrayOfCustomers[size];   // array that holds all the customer objects.
   string name;
@@ -36,12 +42,40 @@ int main()
         arrayOfCustomers[currentSize] = newCustomer;
 
         currentSize++;  // at this point a new customer should have been added to the array
+
+        cout << "These are all the cars available in our inventory:" << endl;
+        carTextFile();
+
         cout << "Enter name of car you would like to rent." << endl;
         string brand;
         getline(cin,brand);
+
+        //input validation
+        while(brand != "Toyota" && brand != "Honda" && brand !="Tesla" && brand !="Lexus" && brand !="Audi" && brand !="BMW" && brand !="Nissan" && brand != "Kia" && brand != "Jeep" && brand != "Ferrari")
+        {
+          cout << "Error, please try again" << endl;
+          cout << "Enter name of car you would like to rent." << endl;
+          getline(cin,brand);
+          if(brand == "Toyota" || brand == "Honda" || brand =="Tesla" || brand =="Lexus" || brand =="Audi" || brand =="BMW" || brand =="Nissan" || brand == "Kia" || brand == "Jeep" || brand == "Ferrari")
+          {
+            break;
+          }
+        }
         cout << "Enter your desire year" << endl;
         string enteredYear;
         getline(cin,enteredYear);
+
+        //input validation
+        while(enteredYear != "2017" && enteredYear != "2018" && enteredYear != "2019")
+        {
+          cout << "Error, please try again" << endl;
+          cout << "Enter your desire year" << endl;
+          getline(cin,enteredYear);
+          if(enteredYear == "2017" || enteredYear == "2018" || enteredYear == "2019")
+          {
+            break;
+          }
+        }
         newCustomer->carBrand = brand;
         newCustomer->year = enteredYear;
         newCustomer->isRented = 1;
@@ -54,12 +88,37 @@ int main()
         }
         // rents car
         else{
+          cout << "These are all the cars available in our inventory:" << endl;
+          carTextFile();
           cout << "Enter name of car you would like to rent." << endl;
           string brand;
           getline(cin,brand);
+
+          //input validation
+          while(brand != "Toyota" && brand != "Honda" && brand !="Tesla" && brand !="Lexus" && brand !="Audi" && brand !="BMW" && brand !="Nissan" && brand != "Kia" && brand != "Jeep" && brand != "Ferrari")
+          {
+            cout << "Error, please try again" << endl;
+            cout << "Enter name of car you would like to rent." << endl;
+            getline(cin,brand);
+            if(brand == "Toyota" || brand == "Honda" || brand =="Tesla" || brand =="Lexus" || brand =="Audi" || brand =="BMW" || brand =="Nissan" || brand == "Kia" || brand == "Jeep" || brand == "Ferrari")
+            {
+              break;
+            }
+          }
           cout << "Enter your desire year" << endl;
           string enteredYear;
           getline(cin,enteredYear);
+
+          while(enteredYear != "2017" && enteredYear != "2018" && enteredYear != "2019")
+          {
+            cout << "Error, please try again" << endl;
+            cout << "Enter your desire year" << endl;
+            getline(cin,enteredYear);
+            if(enteredYear == "2017" || enteredYear == "2018" || enteredYear == "2019")
+            {
+              break;
+            }
+          }
           arrayOfCustomers[check]->carBrand = brand;
           arrayOfCustomers[check]->year = enteredYear;
           arrayOfCustomers[check]->isRented = 1;
@@ -94,6 +153,11 @@ int main()
             if it doesn't exist then tell the user the car doesn't exists and ask again or exit.
         */
         cout << "You have successfully returned the car!" << endl;
+        cout << "What's the number of days you've checked out? " << endl;
+        string days;
+        getline(cin,days);
+        int random = rand() * stoi(days);
+        cout << "Your total cost is: $" << random << endl;
         cout << "Have a good day!" << endl;
         writeOutAllArrayInformation(arrayOfCustomers, currentSize);
         exit(0);
@@ -110,5 +174,5 @@ int main()
       exit(0);
     }
   }
-}
-}
+    }
+  }
